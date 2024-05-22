@@ -89,3 +89,14 @@ Circle.prototype.toString = function() {
     return 'Circle with radius ' + this.radius;
 }
 // c1.toString() // Circle with radius 1
+
+//-----------Iterating Instance and Prototype Members---------
+
+// Returns instance (we also call it own) members
+console.log(Object.keys(c1)); // ['radius', 'move']
+
+// Returns all members (instance/own + prototype)
+for (let key in c1) console.log(key); // radius move draw toString
+
+// c1.hasOwnProperty('radius') // true
+// c1.hasOwnProperty('draw') // false
