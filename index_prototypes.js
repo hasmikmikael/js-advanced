@@ -54,3 +54,38 @@ let array = [];
 //   [[Prototype]]: Object // circleBase
 //     constructor: ƒ Circle(radius)
 //     [[Prototype]]: Object // objectBase
+
+
+//-----------Prototype vs Instance Members--------------
+function Circle(radius) {
+    //Instance members
+    this.radius = radius;
+
+    this.move = function() {
+        console.log('move');
+    }
+
+    // this.move = function() {
+    //     this.draw();
+    //     console.log('move'); // draw   move
+    // }
+}
+
+// Prototype members
+Circle.prototype.draw = function() {
+    this.move();
+    console.log('draw'); // move  draw
+}
+
+// // Prototype members
+// Circle.prototype.draw = function() {
+//     console.log('draw');
+// }
+
+const c1 = new Circle(1);
+const c2 = new Circle(1);
+
+Circle.prototype.toString = function() {
+    return 'Circle with radius ' + this.radius;
+}
+// c1.toString() // Circle with radius 1
