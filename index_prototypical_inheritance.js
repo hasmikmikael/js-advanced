@@ -1,4 +1,4 @@
-// Creating your own Prototypical Inheritance
+//-------Creating your own Prototypical Inheritance-------
 function Shape() {
 }
 
@@ -21,3 +21,28 @@ Circle.prototype.draw = function() {
 
 const s = new Shape();
 const c = new Circle(1);
+
+
+//--------Resetting the Constructor------------
+function ShapeR() {
+}
+
+ShapeR.prototype.duplicate = function() {
+    console.log('duplicate');
+}
+
+function CircleR(radius) {
+    this.radius = radius;
+}
+
+// CircleR.prototype.console = CircleR;
+// new CircleR.prototype.constructor() => new CircleR();
+CircleR.prototype = Object.create(ShapeR.prototype);
+CircleR.prototype.constructor = CircleR;
+
+CircleR.prototype.draw = function() {
+    console.log('draw');
+}
+
+const sp = new ShapeR();
+const cl = new CircleR(1);
