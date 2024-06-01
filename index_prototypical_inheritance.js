@@ -110,3 +110,39 @@ extend(Square, Shape);
 const sh = new Shape();
 const ci = new Circle(1, 'red'); // Circle {color: 'red', radius: 1}
 const sq = new Square(10);
+
+
+//-------Method Overriding----------
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+}
+
+function Shape() {
+}
+
+Shape.prototype.duplicate = function() {
+    console.log('duplicate');
+}
+
+function Circle() {
+}
+
+extend(Circle, Shape);
+
+Circle.prototype.duplicate = function() {
+    console.log('duplicate circle');
+}
+
+const cr = new Circle();
+console.log(cr.duplicate()); // duplicate circle
+
+// sometimes we would like to call the 
+// implementation on the parent object as well
+Circle.prototype.duplicate = function() {
+    Shape.prototype.duplicate.call(this);
+    console.log('duplicate circle');
+}
+
+const crc = new Circle();    // duplicate
+console.log(cr.duplicate()); // duplicate circle
