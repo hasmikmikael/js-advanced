@@ -146,3 +146,52 @@ Circle.prototype.duplicate = function() {
 
 const crc = new Circle();    // duplicate
 console.log(cr.duplicate()); // duplicate circle
+
+
+//----------------Polymorphism------------------
+function Shape() {
+}
+
+Shape.prototype.duplicate = function() {
+    console.log('duplicate');
+}
+
+function Circle() {
+}
+
+extend(Circle, Shape);
+
+Circle.prototype.duplicate = function() {
+    console.log('duplicate circle');
+}
+
+function Square() {
+}
+
+extend(Square, Shape);
+
+Square.prototype.duplicate = function() {
+    console.log('duplicate square');
+}
+
+const crcl = new Circle();
+
+////////////////////
+// const shapes = [
+//     new Circle(),
+//     new Square()
+// ];
+
+// //////////// instead of this
+// for (let shape of shapes) {
+//     if (shape.type === 'circle')
+//       duplicateCircle();
+//     else if (shape.type === 'square')
+//       duplicateSquare();
+//     else
+//       duplicateShape();
+// }
+
+// //////////// using polymorphism we can write this code
+// for (let shape of shapes)
+//   shape.duplicate();
